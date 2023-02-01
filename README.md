@@ -3,6 +3,17 @@
 
 
 This project aims to create a social app to help with a Data DAO around creating a journal for an individual. 
+We enable citizens to journal their wellness and also interesting pics from their daily life.
+
+The wellness data will be used to capture important data points to later train a ML algorithm to predict what you can do better.
+
+## Tongue Diagnosis
+
+Tongue diagnosis is a form of preventative diagnosis, that can be better applied with more data.
+Earn to stick your tongue out enables this DAO to collect tongue information which can be later supplemented with wellness to help with your daily wellness routine.
+
+![Tongue](./assets/images/Tongue-Diagnosis.webp)
+
 The basic flow is as shown below - 
 
 ![Flow](./assets/images/sodefiver1.png)
@@ -21,8 +32,8 @@ The basic flow is as shown below -
     4d. Enable the option to keep the file URI private
 ```
 
-
 ## Smart Contracts
 
 1. We will need a token for credits (Mintable by the DAO to users who upload tokens, premint 10% for liquidity pools)
 2. Deal and fevm contracts
+
