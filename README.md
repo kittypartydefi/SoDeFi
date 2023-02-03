@@ -38,5 +38,11 @@ The basic flow is as shown below -
 1. We will need a token for credits (Mintable by the DAO to users who upload tokens, premint 10% for liquidity pools)
 2. Deal and fevm contracts
 
+### Setup
+1. Clone the folder
+2. git submodule update --init --recursive
+3. cd packages/foundry && yarn
+4. yarn test
+
 ### References
 We used the https://github.com/lotus-web3/deal-bounty-contract for creating the fevm flows around storage of CID. 
