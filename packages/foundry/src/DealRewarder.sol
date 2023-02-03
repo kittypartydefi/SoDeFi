@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import { MarketAPI } from "@filecoin/MarketAPI.sol";
 import { CommonTypes } from "@filecoin/types/CommonTypes.sol";
 import { MarketTypes } from "@filecoin/types/MarketTypes.sol";
-import { Actor } from "@filecoin/utils/Actor.sol";
+import { Actor, HyperActor } from "@filecoin/utils/Actor.sol";
 import { Misc } from "@filecoin/utils/Misc.sol";
 
 /* 
@@ -27,17 +27,6 @@ contract DealRewarder {
     uint64 constant DEFAULT_FLAG = 0x00000000;
     uint64 constant METHOD_SEND = 0;
     
-    struct GetDealDataCommitmentParams {
-        uint64 id;
-    }
-
-    struct GetDealClientParams {
-        uint64 id;
-    }
-
-    struct GetDealProviderParams {
-        uint64 id;
-    }
     constructor() {
         owner = msg.sender;
     }
@@ -76,11 +65,11 @@ contract DealRewarder {
         send(clientRet.client);
     }
 
-    function call_actor_id(uint64 method, uint256 value, uint64 flags, uint64 codec, bytes memory params, uint64 id) public returns (bool, int256, uint64, bytes memory) {
-        (bool success, bytes memory data) = address(CALL_ACTOR_ID).delegatecall(abi.encode(method, value, flags, codec, params, id));
-        (int256 exit, uint64 return_codec, bytes memory return_value) = abi.decode(data, (int256, uint64, bytes));
-        return (success, exit, return_codec, return_value);
-    }
+    // function call_actor_id(uint64 method, uint256 value, uint64 flags, uint64 codec, bytes memory params, uint64 id) public returns (bool, int256, uint64, bytes memory) {
+    //     (bool success, bytes memory data) = address(CALL_ACTOR_ID).delegatecall(abi.encode(method, value, flags, codec, params, id));
+    //     (int256 exit, uint64 return_codec, bytes memory return_value) = abi.decode(data, (int256, uint64, bytes));
+    //     return (success, exit, return_codec, return_value);
+    // }
 
     // send 1 FIL to the filecoin actor at actor_id
     function send(uint64 actorID) internal {
@@ -88,7 +77,7 @@ contract DealRewarder {
         delete emptyParams;
 
         uint oneFIL = 1000000000000000000;
-        call_actor_id(METHOD_SEND, oneFIL, DEFAULT_FLAG, Misc.NONE_CODEC, emptyParams, actorID);
+        HyperActor.call_actor_id(METHOD_SEND, oneFIL, DEFAULT_FLAG, Misc.NONE_CODEC, emptyParams, actorID);
 
     }
 
