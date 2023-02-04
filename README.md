@@ -35,10 +35,26 @@ The basic flow is as shown below -
 
 ## Smart Contracts
 
-1. We will need a token for credits (Mintable by the DAO to users who upload tokens, premint 10% for liquidity pools)
-2. Deal and fevm contracts
+1. WellCoin - We will need a token for credits (Mintable by the DAO to users who upload tokens, premint 10% for liquidity pools)
+2. DataDAO - Deal and fevm contracts
+3. DAOMember -  NFT membership
 
 ### Setup
+1. cd packages/fevm-hardhat-kit
+1. yarn
+1. yarn hardhat deploy
+
+### Testing
+1. Deploy contracts
+1. Mint NFT to 3 addresses (Guardians)
+1. Top up the DataDAO contract with a little FIL(this is to fund the bounty hunters)
+1. Get the CID for making the deal
+1. Add CID as a guardian 
+1. Approve CID as 3 guardians
+1. Add to the CID list
+1. Make a deal and try to claim bounty
+
+#### Foundry < Issue with Foundry deployment switch to hardhat >
 1. Clone the folder
 2. git submodule update --init --recursive
 3. cd packages/foundry && yarn
