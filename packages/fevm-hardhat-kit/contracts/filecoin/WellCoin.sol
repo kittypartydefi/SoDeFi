@@ -29,7 +29,7 @@ contract WellCoin {
                 return true;
         }
 
-        function setDAO(address _dao) {
+        function setDAO(address _dao) public {
                 require(DAOMemberNFT.balanceOf(msg.sender) > 0, "Not a Guardian!");
                 dao = _dao;
         }

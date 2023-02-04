@@ -14,14 +14,13 @@ task(
         //create a new wallet instance
         const wallet = new ethers.Wallet(network.config.accounts[0], ethers.provider)
 
-        //create a DealRewarder contract factory
-        const DealRewarder = await ethers.getContractFactory("DealRewarder", wallet)
+        const DataDAO = await ethers.getContractFactory("DataDAO", wallet)
         //create a DealRewarder contract instance 
         //this is what you will call to interact with the deployed contract
-        const dealRewarder = await DealRewarder.attach(contractAddr)
+        const dao = await DataDAO.attach(contractAddr)
         
         //send a transaction to call claim_bounty() method
-        transaction = await dealRewarder.claim_bounty(dealid)
+        transaction = await dao.claim_bounty(dealid)
         transaction.wait()
         console.log("Complete!")
     })

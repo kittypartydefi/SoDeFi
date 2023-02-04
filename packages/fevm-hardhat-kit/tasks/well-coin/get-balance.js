@@ -23,6 +23,4 @@ task(
       //Call the getBalance method
       let result = BigInt(await WellCoinContract.getBalance(account)).toString()
       console.log("Amount of WellCoin owned by", account, "is", result)
-      let mintedToken = await WellCoinContract.getMintedTokenBalance()
-      console.log(`Total amount of minted tokens is ${mintedToken}`)
   })

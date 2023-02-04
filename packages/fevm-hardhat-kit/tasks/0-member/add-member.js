@@ -4,7 +4,6 @@ task("add-member", "Sends Membership NFT to account")
 .setAction(async (taskArgs) => {
     //store taskargs as useable variables
     const contractAddr = taskArgs.contract
-    const amount = taskArgs.amount
     const toAccount = taskArgs.toaccount
 
     //create a new wallet instance
@@ -16,11 +15,11 @@ task("add-member", "Sends Membership NFT to account")
     //this is what you will call to interact with the deployed contract
     const dm = await DAOMember.attach(contractAddr)
 
-    console.log("Sending:", amount, "WellCoin to", toAccount)
+    console.log("Sending:",  "NFT to", toAccount)
 
     //send transaction to call the DAOMember safeMint() method
     const transaction = await dm.safeMint(toAccount)
     const receipt = await transaction.wait()
-    let result = BigInt(await dm.getBalance(toAccount)).toString()
+    let result = BigInt(await dm.balanceOf (toAccount)).toString()
     console.log("Total WellCoin at:", toAccount, "is", result)
 })
