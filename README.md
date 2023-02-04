@@ -1,4 +1,4 @@
-# SoDeFi
+# SoDeFi - Token Gated DataDAO for Wellness
 ![Logo](./assets/images/SoDeFi-logos/SoDeFi-logos-50.jpeg)
 
 
@@ -7,18 +7,9 @@ We enable citizens to journal their wellness and also interesting pics from thei
 
 The wellness data will be used to capture important data points to later train a ML algorithm to predict what you can do better.
 
-## Tongue Diagnosis
-
-Tongue diagnosis is a form of preventative diagnosis, that can be better applied with more data.
-Earn to stick your tongue out enables this DAO to collect tongue information which can be later supplemented with wellness to help with your daily wellness routine.
-
-![Tongue](./assets/images/Tongue-Diagnosis.webp)
-
 The basic flow is as shown below - 
 
 ![Flow](./assets/images/sodefiver2.png)
-
-
 
 ## Flows - 
 1. Allow an end user to upload a file with a unique hash using pinata and create a CID for it.
@@ -53,6 +44,10 @@ The basic flow is as shown below -
 1. Approve CID as 3 guardians
 1. Add to the CID list
 1. Make a deal and try to claim bounty
+
+#### hackathon todos
+TODO: Allow upload of wellness data to web3.storage encrypted
+TODO: see if can do some analysis of the data
 
 #### Foundry < Issue with Foundry deployment switch to hardhat >
 1. Clone the folder
