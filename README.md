@@ -44,5 +44,12 @@ The basic flow is as shown below -
 3. cd packages/foundry && yarn
 4. yarn test
 
+### Deployment
+1. Deploy in the following order - 
+1. DAO membership, token, Data DAO
+1. A user uploads an image and gets a CID
+1. Next the guardians approve the CID (atleast 2)
+1. Any Guardian can create a bounty request, as part of the request the user who uploaded the data gets a reward
+
 ### References
 We used the https://github.com/lotus-web3/deal-bounty-contract for creating the fevm flows around storage of CID. 

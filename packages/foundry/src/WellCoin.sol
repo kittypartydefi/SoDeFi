@@ -1,18 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
-contract SimpleCoin {
+contract WellCoin {
         mapping (address => uint) balances;
+        IERC721 public DAOMemberNFT;
 
         event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-        constructor() {
+        constructor(address _DAOMemberNFT) {
                 balances[tx.origin] = 10000;
+                DAOMemberNFT = IERC721(_DAOMemberNFT);
         }
 
         function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
                 if (balances[msg.sender] < amount) return false;
                 balances[msg.sender] -= amount;
+                balances[receiver] += amount;
+                emit Transfer(msg.sender, receiver, amount);
+                return true;
+        }
+
+        function mintAndSend(address receiver, uint amount) public returns(bool sufficient) {
+                require(DAOMemberNFT.balanceOf(msg.sender) > 0, "Not a Guardian!");
+
                 balances[receiver] += amount;
                 emit Transfer(msg.sender, receiver, amount);
                 return true;

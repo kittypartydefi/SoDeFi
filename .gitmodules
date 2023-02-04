@@ -11,6 +11,3 @@
 [submodule "packages/foundry/lib/buffer"]
 	path = packages/foundry/lib/buffer
 	url = git@github.com:ensdomains/buffer
-[submodule "packages/foundry/lib/filecoin"]
-	path = packages/foundry/lib/filecoin
-	url = git@github.com:ZenGround0/filecoin-solidity.git

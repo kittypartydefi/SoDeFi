@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 import { MarketAPI } from "@filecoin/MarketAPI.sol";
 import { CommonTypes } from "@filecoin/types/CommonTypes.sol";
@@ -26,15 +26,20 @@ contract DealRewarder {
     address constant CALL_ACTOR_ID = 0xfe00000000000000000000000000000000000005;
     uint64 constant DEFAULT_FLAG = 0x00000000;
     uint64 constant METHOD_SEND = 0;
-    
+    uint feeFIL = 1000000000000;//12 decimals
+
     constructor() {
         owner = msg.sender;
     }
 
+    function setFee(uint _newFee) public {
+        require(msg.sender == owner);
+        feeFIL = _newFee;
+    }
+
     function fund(uint64 unused) public payable {}
 
-    function addCID(bytes calldata cidraw, uint size) public {
-       require(msg.sender == owner);
+    function addCID(bytes calldata cidraw, uint size) internal {
        cidSet[cidraw] = true;
        cidSizes[cidraw] = size;
     }
@@ -71,13 +76,12 @@ contract DealRewarder {
     //     return (success, exit, return_codec, return_value);
     // }
 
-    // send 1 FIL to the filecoin actor at actor_id
+    // send a little FIL to the filecoin actor at actor_id
     function send(uint64 actorID) internal {
         bytes memory emptyParams = "";
         delete emptyParams;
 
-        uint oneFIL = 1000000000000000000;
-        HyperActor.call_actor_id(METHOD_SEND, oneFIL, DEFAULT_FLAG, Misc.NONE_CODEC, emptyParams, actorID);
+        HyperActor.call_actor_id(METHOD_SEND, feeFIL, DEFAULT_FLAG, Misc.NONE_CODEC, emptyParams, actorID);
 
     }
 
