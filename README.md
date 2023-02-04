@@ -1,4 +1,4 @@
-# SoDeFi - Token Gated DataDAO for Wellness
+# SoDeFi - Token Gated DataDAO for Wellness (Earn for X via FEVM)
 ![Logo](./assets/images/SoDeFi-logos/SoDeFi-logos-50.jpeg)
 
 
