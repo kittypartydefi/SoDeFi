@@ -46,8 +46,8 @@ The basic flow is as shown below -
 1. Make a deal and try to claim bounty
 
 #### hackathon todos
-TODO: Allow upload of wellness data to web3.storage encrypted
-TODO: see if can do some analysis of the data
+TODO: Convert to monorepo
+TODO: solve the challenge of 2GB lighthouse uploads for piece CID
 
 #### Foundry < Issue with Foundry deployment switch to hardhat >
 1. Clone the folder

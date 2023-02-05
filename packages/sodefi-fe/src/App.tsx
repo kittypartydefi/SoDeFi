@@ -1,5 +1,5 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import wellness from "./assets/wellness.gif";
 import "./App.css";
 import {
   Button,
@@ -83,8 +83,18 @@ function App() {
             <a href="/dao" className="link">DAO </a>
           </Navbar.End>
         </Navbar>
+        
         <div className="App text-xl font-bold flex content-center justify-center h-screen w-auto">
+          
           <div className="item w-128 h-auto">
+          
+          {/* <img src={lift} alt="404"  width="90" height="100" />
+          <img src={sleep} alt="404"  width="60" height="80" />
+          <img src={money} alt="404"  width="90" height="100" /> */}
+
+            <div className="flex flex-col justify-center items-center h-auto w-auto mr-[200px]">
+            <img src={wellness} width="300" height="400" />
+</div>
             <div className="flex flex-col justify-center items-center h-auto w-auto">
               <div className="w-128 items-center  justify-center h-auto">
                 <Stats className="stats-vertical lg:stats-horizontal shadow">
