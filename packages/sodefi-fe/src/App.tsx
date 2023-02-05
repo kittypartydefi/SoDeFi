@@ -21,10 +21,13 @@ import { ethers } from "ethers";
 import { verifyMessage } from 'ethers/lib/utils'
 import configData from "../src/assets/contracts.json";
 import lighthouse from '@lighthouse-web3/sdk';
+import { ApplyConditons } from "./components/ApplyConditions";
 
 function App() {
   const [ dataLoadProgress, setDataLoadProgress ] = useState(0);
   const [ e, setE ] = useState("");
+  const [ showStats, setShowStats ] = useState(false);
+  const [ cid, setCID ] = useState("");
   const { address, isConnected } = useAccount()
   const { chain, chains } = useNetwork()
   const { data, error, isLoading, signMessage } = useSignMessage({
@@ -41,6 +44,8 @@ function App() {
           signedMessage,
           progressCallback
         );
+        setCID(response.data.Hash)
+        setShowStats(true);
       }
     },
   })
@@ -97,7 +102,7 @@ function App() {
 </div>
             <div className="flex flex-col justify-center items-center h-auto w-auto">
               <div className="w-128 items-center  justify-center h-auto">
-                <Stats className="stats-vertical lg:stats-horizontal shadow">
+              {showStats&&(<Stats className="stats-vertical lg:stats-horizontal shadow">
                   <Stats.Stat>
                     <Stats.Stat.Item variant="title">Total Steps</Stats.Stat.Item>
                     <Stats.Stat.Item variant="value">1000K</Stats.Stat.Item>
@@ -122,7 +127,7 @@ function App() {
                       ↘︎ 90 (10%)
                     </Stats.Stat.Item>
                   </Stats.Stat>
-                </Stats>
+                </Stats>)}
               </div>
               <div className="item w-32 h-8"></div>
               <div className="w-64 justify-center h-auto">
@@ -136,9 +141,11 @@ function App() {
                     <span className="label-text-alt">** Encryption powered by lighthouse </span>
                   </label>
                 </div>
+
                 <progress className="progress progress-primary w-56" value={dataLoadProgress} max="100"></progress>
-              </div>
               
+              </div>
+              <ApplyConditons cid={cid}></ApplyConditons>
                     <Divider></Divider>
                     <h2>This is a mock site for a Hackathon</h2>
                     <h5>!!!Do Not Upload Real Data!!!</h5>
