@@ -13,7 +13,6 @@ import {
   Tabs,
 } from "react-daisyui";
 import React from "react";
-import porabi from "./assets/porabi.json";
 import { Profile } from "./components/Profile";
 import ErrorBoundary from './components/ErrorBoundary';
 import { useAccount, useBalance, useSignMessage, useNetwork } from "wagmi";

@@ -39,8 +39,8 @@ export const hyperspace = {
     symbol: 'tFIL',
   },
   rpcUrls: {
-    public: { http: ['https://api.hyperspace.node.glif.io/rpc/v1'] },
-    default: { http: ['https://api.hyperspace.node.glif.io/rpc/v1'] },
+    public: 'https://api.hyperspace.node.glif.io/rpc/v1',
+    default: 'https://api.hyperspace.node.glif.io/rpc/v1',
   },
   blockExplorers: {
     etherscan: { name: 'filfox', url: 'https://hyperspace.filfox.info/en' },
@@ -51,11 +51,7 @@ export const hyperspace = {
 const { chains, provider, webSocketProvider } = configureChains(
   [hyperspace],
   [
-    jsonRpcProvider({
-      rpc: (chain) => ({
-        http: `https://api.hyperspace.node.glif.io/rpc/v0`,
-      }),
-    }),
+    
   ]
 )
 
