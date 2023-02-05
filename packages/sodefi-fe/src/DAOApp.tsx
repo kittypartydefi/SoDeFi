@@ -19,10 +19,11 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { useAccount, useBalance, useSignMessage, useNetwork } from "wagmi";
 import { ethers } from "ethers";
 import { verifyMessage } from 'ethers/lib/utils'
-import configData from "../src/assets/contracts.json";
+import configData from "./assets/contracts.json";
 import lighthouse from '@lighthouse-web3/sdk';
+import { Filetasks } from "./components/FileTasks";
 
-function App() {
+function DAOApp() {
   const [ dataLoadProgress, setDataLoadProgress ] = useState(0);
   const [ e, setE ] = useState("");
   const { address, isConnected } = useAccount()
@@ -37,7 +38,7 @@ function App() {
         const response = await lighthouse.uploadEncrypted(
           e,
           address,
-          "19c1a096-9fb1-437d-b691-5b64ecfeb9bf",
+          "cdbb3877-4500-4197-bea5-fdca2c43e5e2",
           signedMessage,
           progressCallback
         );
@@ -84,48 +85,7 @@ function App() {
         <div className="App text-xl font-bold flex content-center justify-center h-screen w-auto">
           <div className="item w-128 h-auto">
             <div className="flex flex-col justify-center items-center h-auto w-auto">
-              <div className="w-128 items-center  justify-center h-auto">
-                <Stats className="stats-vertical lg:stats-horizontal shadow">
-                  <Stats.Stat>
-                    <Stats.Stat.Item variant="title">Total Steps</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="value">1000K</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="desc">
-                      Feb 1st - Feb 2nd
-                    </Stats.Stat.Item>
-                  </Stats.Stat>
-
-                  <Stats.Stat>
-                    <Stats.Stat.Item variant="title">Sleep Quality</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="value">:-)</Stats.Stat.Item>
-
-                    <Stats.Stat.Item variant="desc">
-                      ↗︎ 400 (22%)
-                    </Stats.Stat.Item>
-                  </Stats.Stat>
-
-                  <Stats.Stat>
-                    <Stats.Stat.Item variant="title">Weight</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="value">100kg</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="desc">
-                      ↘︎ 90 (10%)
-                    </Stats.Stat.Item>
-                  </Stats.Stat>
-                </Stats>
-              </div>
-              <div className="item w-32 h-8"></div>
-              <div className="w-64 justify-center h-auto">
-              <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Upload your wellness data</span>
-                    
-                  </label>
-                  <input type="file"  onChange={e=>deployEncrypted(e)} className="file-input file-input-bordered w-full max-w-xs" />
-                  <label className="label">
-                    <span className="label-text-alt">** Encryption powered by lighthouse </span>
-                  </label>
-                </div>
-                <progress className="progress progress-primary w-56" value={dataLoadProgress} max="100"></progress>
-              </div>
+              <Filetasks></Filetasks>
               
                     <Divider></Divider>
                     <h2>This is a mock site for a Hackathon</h2>
@@ -140,4 +100,4 @@ function App() {
   );
 }
 
-export default App;
+export default DAOApp;

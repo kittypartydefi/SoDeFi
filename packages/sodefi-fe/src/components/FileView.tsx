@@ -61,10 +61,10 @@ export const Fileview = (filelistInst: FileviewObj) => {
 
   return (
     <div className="App">
-      <button onClick={()=>decrypt()}>decrypt</button>
+      <button className="btn btn-xs btn-outline" onClick={()=>decrypt()}>decrypt</button>
       {
         fileURL?
-          <a href={fileURL} target="_blank">viewFile</a>
+          <a href={fileURL} target="_blank"> view file</a>
         :
           null
       }

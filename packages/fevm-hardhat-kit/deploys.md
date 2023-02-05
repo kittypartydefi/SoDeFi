@@ -23,7 +23,7 @@ yarn hardhat add-member --contract "0xA49399eFcCF8506f3BBb63650AfF0AD873891eF7" 
 Step 2. Add DATA DAO in wellcoin
 yarn hardhat set-dao --contract "0x01d494D675Aa56047db75C27bBBAdF2198a85DC6" --daoaddress "0xcf1Eb6a4a03a8795Be5CdF586d6b49d2829DA5A7"
 
-Step 3. Approve the CID via app
+Step 3. Approve the piece CID via app
 ["0x000181e20392202034194f3b7cae3042a57b63ea4c36a962478e41bfa8ddc80dd61cae8bebdedf23",true]
 
 Step 4. set wellness cid and reward the end user

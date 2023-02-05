@@ -1,33 +1,71 @@
+import { useAccount } from "wagmi";
+import {
+  Button,
+  Card,
+  Collapse,
+  Divider,
+  Input,
+  Stats,
+  Tabs,
+} from "react-daisyui";
+import { useEffect, useState } from "react";
+import { Fileview } from "./FileView";
+import { Vote } from "./Vote";
+export const Filetasks = () => {
+  const [data, setData] = useState([]);
+  const { address, isConnected } = useAccount()
 
+  const fetchData = () => {
+    fetch(
+      `https://api.lighthouse.storage/api/user/get_uploads?publicKey=0x4Db32ee262D2F2FcA54CFA0dA5991690255B5659&pageNo=1`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  };
 
-import { useAccount, useConnect, useDisconnect, useEnsName } from 'wagmi'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { Button, Card, Collapse, Divider, Input, Stats, Tabs } from "react-daisyui";
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-export const Filetasks = ()  => {
+  return (
+    <div className="overflow-x-auto">
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Filename</th>
 
- return (
+            <th>CID</th>
+            <th>Vote</th>
+            <th>Data Quality</th>
+            <th>Decrypt</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
 
-    <div className="stack">
-    <div className="card shadow-md bg-primary text-primary-content">
-        <div className="card-body">
-        <h2 className="card-title">Notification 1</h2> 
-        <p>You have 3 unread messages. Tap here to see.</p>
-        </div>
-    </div> 
-    <div className="card shadow bg-primary text-primary-content">
-        <div className="card-body">
-        <h2 className="card-title">Notification 2</h2> 
-        <p>You have 3 unread messages. Tap here to see.</p>
-        </div>
-    </div> 
-    <div className="card shadow-sm bg-primary text-primary-content">
-        <div className="card-body">
-        <h2 className="card-title">Notification 3</h2> 
-        <p>You have 3 unread messages. Tap here to see.</p>
-        </div>
+        {data.length > 0 && (
+          <tbody>
+            {data.map((wellnessData: any) => (
+              <tr>
+                <td className="text-xs">{wellnessData.fileName}</td>
+
+                <th className="text-xs">{wellnessData.cid}</th>
+                <td className="text-xs"><Vote cid={"000181e20392202034194f3b7cae3042a57b63ea4c36a962478e41bfa8ddc80dd61cae8bebdedf23"} vote={true} ></Vote></td>
+                <td className="text-xs">{Math.floor(Math.random() * 10)}</td>
+                <td className="text-xs">
+                  <Fileview cid={wellnessData.cid}></Fileview>
+                </td>
+                <td className="text-xs">
+                  {new Date(wellnessData.createdAt).toLocaleDateString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
+      </table>
     </div>
-    </div>
- )
- 
-}
+  );
+};
