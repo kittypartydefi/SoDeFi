@@ -79,6 +79,7 @@ function DAOApp() {
           </Navbar.Start>
           <Navbar.End>
             <Profile />
+            <a href="/" className="link">Home </a>
           </Navbar.End>
         </Navbar>
         <div className="App text-xl font-bold flex content-center justify-center h-screen w-auto">

@@ -78,8 +78,9 @@ function App() {
             </Button>
           </Navbar.Start>
           <Navbar.End>
-          <a href="/dao" className="link">I'm a simple link</a>
+          
             <Profile />
+            <a href="/dao" className="link">DAO </a>
           </Navbar.End>
         </Navbar>
         <div className="App text-xl font-bold flex content-center justify-center h-screen w-auto">
