@@ -106,9 +106,9 @@ function App() {
 
                   <Stats.Stat>
                     <Stats.Stat.Item variant="title">Weight</Stats.Stat.Item>
-                    <Stats.Stat.Item variant="value">98kg</Stats.Stat.Item>
+                    <Stats.Stat.Item variant="value">100kg</Stats.Stat.Item>
                     <Stats.Stat.Item variant="desc">
-                      ↘︎ 90 (14%)
+                      ↘︎ 90 (10%)
                     </Stats.Stat.Item>
                   </Stats.Stat>
                 </Stats>
@@ -122,7 +122,7 @@ function App() {
                   </label>
                   <input type="file"  onChange={e=>deployEncrypted(e)} className="file-input file-input-bordered w-full max-w-xs" />
                   <label className="label">
-                    <span className="label-text-alt">** Encryption powered by lighthouse {dataLoadProgress}</span>
+                    <span className="label-text-alt">** Encryption powered by lighthouse </span>
                   </label>
                 </div>
                 <progress className="progress progress-primary w-56" value={dataLoadProgress} max="100"></progress>
