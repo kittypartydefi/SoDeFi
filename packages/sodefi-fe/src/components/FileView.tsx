@@ -64,7 +64,7 @@ export const Fileview = (filelistInst: FileviewObj) => {
       <button className="btn btn-xs btn-outline" onClick={()=>decrypt()}>decrypt</button>
       {
         fileURL?
-          <a href={fileURL} target="_blank"> view file</a>
+          <a className="link" href={fileURL} target="_blank"> view file</a>
         :
           null
       }

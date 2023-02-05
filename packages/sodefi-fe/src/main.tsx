@@ -49,9 +49,13 @@ export const hyperspace = {
 } as const satisfies Chain
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [hyperspace],
+  [chain.optimismKovan, hyperspace],
   [
-    
+    jsonRpcProvider({
+      rpc: () => ({
+        http: `https://api.hyperspace.node.glif.io/rpc/v0`,
+      }),
+    }),
   ]
 )
 

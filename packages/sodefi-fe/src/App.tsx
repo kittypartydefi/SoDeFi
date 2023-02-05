@@ -7,6 +7,7 @@ import {
   Collapse,
   Divider,
   Input,
+  Link,
   Navbar,
   Select,
   Stats,
@@ -77,6 +78,7 @@ function App() {
             </Button>
           </Navbar.Start>
           <Navbar.End>
+          <a href="/dao" className="link">I'm a simple link</a>
             <Profile />
           </Navbar.End>
         </Navbar>
