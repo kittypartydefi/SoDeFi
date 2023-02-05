@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import { MarketAPI } from "../lib/filecoin-solidity/contracts/v0.8/MarketAPI.sol";
+import { MarketAPI, MarketAPIOld } from "../lib/filecoin-solidity/contracts/v0.8/MarketAPI.sol";
 import { CommonTypes } from "../lib/filecoin-solidity/contracts/v0.8/types/CommonTypes.sol";
 import { MarketTypes } from "../lib/filecoin-solidity/contracts/v0.8/types/MarketTypes.sol";
 import { Actor, HyperActor } from "../lib/filecoin-solidity/contracts/v0.8/utils/Actor.sol";
@@ -19,6 +19,7 @@ Contract Usage
 */
 contract DealRewarder {
     mapping(bytes => bool) public cidSet;
+    mapping(bytes => int64) public cidTermEnds;
     mapping(bytes => uint) public cidSizes;
     mapping(bytes => mapping(uint64 => bool)) public cidProviders;
 
@@ -28,6 +29,8 @@ contract DealRewarder {
     uint64 constant METHOD_SEND = 0;
     uint feeFIL = 1000000000000;//12 decimals
 
+    
+    
     constructor() {
         owner = msg.sender;
     }
@@ -60,6 +63,12 @@ contract DealRewarder {
     function claim_bounty(uint64 deal_id) public {
         MarketTypes.GetDealDataCommitmentReturn memory commitmentRet = MarketAPI.getDealDataCommitment(MarketTypes.GetDealDataCommitmentParams({id: deal_id}));
         MarketTypes.GetDealProviderReturn memory providerRet = MarketAPI.getDealProvider(MarketTypes.GetDealProviderParams({id: deal_id}));
+        MarketTypes.GetDealTermReturn memory dealTerm = MarketAPIOld.getDealTerm(MarketTypes.GetDealTermParams({id: deal_id}));
+
+        //when someone claims a bounty for a deal also store the deal term
+        //later allow dao to incentivise expiring deals
+        cidTermEnds[commitmentRet.data] = dealTerm.end;
+
 
         authorizeData(commitmentRet.data, providerRet.provider, commitmentRet.size);
 
@@ -70,11 +79,12 @@ contract DealRewarder {
         send(clientRet.client);
     }
 
-    // function call_actor_id(uint64 method, uint256 value, uint64 flags, uint64 codec, bytes memory params, uint64 id) public returns (bool, int256, uint64, bytes memory) {
-    //     (bool success, bytes memory data) = address(CALL_ACTOR_ID).delegatecall(abi.encode(method, value, flags, codec, params, id));
-    //     (int256 exit, uint64 return_codec, bytes memory return_value) = abi.decode(data, (int256, uint64, bytes));
-    //     return (success, exit, return_codec, return_value);
-    // }
+    function requestBountyForRenewal(bytes memory cidraw, uint64 new_deal) public {
+        //check whether the cidTerm is about to end
+        require(block.number <= uint64(cidTermEnds[cidraw] + 6), "not yet mature!");
+        claim_bounty(new_deal);//if valid deal, then let user claim the new request
+    }
+
 
     // send a little FIL to the filecoin actor at actor_id
     function send(uint64 actorID) internal {
