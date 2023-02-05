@@ -14,7 +14,6 @@ import {
 } from "react-daisyui";
 import React from "react";
 import porabi from "./assets/porabi.json";
-console.log(porabi)
 import { Profile } from "./components/Profile";
 import ErrorBoundary from './components/ErrorBoundary';
 import { useAccount, useBalance, useSignMessage, useNetwork } from "wagmi";
@@ -127,7 +126,7 @@ function App() {
                 </div>
                 <progress className="progress progress-primary w-56" value={dataLoadProgress} max="100"></progress>
               </div>
-          
+              
                     <Divider></Divider>
                     <h2>This is a mock site for a Hackathon</h2>
                     <h5>!!!Do Not Upload Real Data!!!</h5>

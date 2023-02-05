@@ -1,7 +1,0 @@
-{
-  "name": "sodefi",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
